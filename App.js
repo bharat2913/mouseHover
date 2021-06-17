@@ -52,6 +52,7 @@
       cursor.style.display = 'block';
       cursor.classList.add('hover');
       canvas.node.style.cursor = 'none';
+      dragElement.style.display = 'none';
     };
     canvas.node.onmouseover = function (e) {
       canvas.isDrawing = true;
@@ -61,13 +62,16 @@
       cursor.classList.remove('hover');
     };
     // Touch Events
-    canvas.node.ontouchstart = function (e) {
+    dragElement.ontouchstart = function (e) {
       canvas.isDrawing = true;
     };
+
     canvas.node.ontouchend = function (e) {
       canvas.isDrawing = false;
     };
-    canvas.node.ontouchmove = function (e) {
+
+    dragElement.ontouchmove = function (e) {
+      canvas.isDrawing = true;
       if (!canvas.isDrawing) {
         return null;
       } else {
@@ -102,7 +106,9 @@
             ctx.fillCircle(x, y, radius, fillColor);
             if (!mediaQueryList) {
               dragElement.style.transform = `translate(${x}px, ${y}px)`;
+              dragElement.style.display = 'none';
             } else if (mediaQueryList) {
+              console.log('hrll');
               dragElement.style.transform = `translate(${x}px, ${y}px)`;
               dragElement.style.display = 'block';
               dragElement.style.opacity = '1';
@@ -111,6 +117,38 @@
         }
       }
     };
+    // dragElement.ontouchmove = function (e) {
+    //   e.preventDefault();
+    //   var touches = e.changedTouches;
+    //   function ongoingTouchIndexById(idToFind) {
+    //     for (let i = 0; i < touches.length; i++) {
+    //       const id = touches[i].identifier;
+
+    //       if (id == idToFind) {
+    //         return i;
+    //       }
+    //     }
+    //     return -1; // not found
+    //   }
+
+    //   for (var i = 0; i < touches.length; i++) {
+    //     var idx = ongoingTouchIndexById(touches[i].identifier);
+
+    //     if (idx >= 0) {
+    //       var x = touches[idx].pageX;
+    //       var y = touches[idx].pageY;
+    //       var radius = 30;
+    //       var fillColor = '#F87171';
+    //       ctx.globalCompositeOperation = 'destination-out';
+    //       ctx.fillCircle(x, y, radius, fillColor);
+    //       dragElement.style.transform = `translate(${x}px, ${y}px)`;
+    //     }
+    //   }
+    //   canvas.isDrawing = true;
+
+    //   console.log(e.changedTouches);
+    //   console.log(canvas.isDrawing);
+    // };
   }
 
   var container = document.getElementById('canvas');

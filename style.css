@@ -42,11 +42,11 @@ body {
     width: 69px;
     height: 69px;
     margin: -32px 0 0 -32px;
-    display: none;
+    /* display: none; */
     border: 5px solid #ea281e;
     border-radius: 100%;
-    opacity: 0;
-    /* transform: translate3d(75vw,60vh,0); */
+    /* opacity: 0; */
+    transform: translate3d(75vw, 65vh, 0px);
     transition: opacity .2s cubic-bezier(.4,0,.2,1);
     transition-delay: 0s;
     transition-delay: 1s;
@@ -57,6 +57,10 @@ body {
     -ms-user-select: none;
     user-select: none;
     z-index: 999;
+}
+
+.showDrag {
+    display: none;
 }
 
 .drag span {
