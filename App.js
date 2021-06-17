@@ -100,7 +100,7 @@
             // console.log('ctx.lineTo(' + touches[i].pageX + ', ' + touches[i].pageY + ');');
             var x = touches[idx].pageX;
             var y = touches[idx].pageY;
-            var radius = 50;
+            var radius = 45;
             var fillColor = '#F87171';
             ctx.globalCompositeOperation = 'destination-out';
             ctx.fillCircle(x, y, radius, fillColor);
