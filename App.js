@@ -106,11 +106,8 @@
             ctx.fillCircle(x, y, radius, fillColor);
             if (!mediaQueryList) {
               dragElement.style.transform = `translate(${x}px, ${y}px)`;
-              dragElement.style.display = 'none';
             } else if (mediaQueryList) {
-              console.log('hrll');
               dragElement.style.transform = `translate(${x}px, ${y}px)`;
-              dragElement.style.display = 'block';
               dragElement.style.opacity = '1';
             }
           }

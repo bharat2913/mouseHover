@@ -42,7 +42,7 @@ body {
     width: 69px;
     height: 69px;
     margin: -32px 0 0 -32px;
-    display: none;
+    /* display: none; */
     border: 5px solid #ea281e;
     border-radius: 100%;
     /* opacity: 0; */
