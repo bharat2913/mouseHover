@@ -41,20 +41,20 @@
 
       var x = e.pageX - this.offsetLeft;
       var y = e.pageY - this.offsetTop;
-      var radius = 40; // or whatever
+      var radius = 60; // or whatever
       var fillColor = '#F87171';
       ctx.globalCompositeOperation = 'destination-out';
       ctx.fillCircle(x, y, radius, fillColor);
       cursor.style.left = x + 'px';
       cursor.style.top = y + 'px';
-      // cursor.classList.add('hover');
+      cursor.classList.add('hover');
     };
     canvas.node.onmouseover = function (e) {
       canvas.isDrawing = true;
     };
     canvas.node.onmouseleave = function (e) {
       canvas.isDrawing = false;
-      // cursor.classList.remove('hover');
+      cursor.classList.remove('hover');
     };
     // Touch Events
     canvas.node.ontouchstart = function (e) {
@@ -62,7 +62,7 @@
     };
     canvas.node.ontouchend = function (e) {
       canvas.isDrawing = false;
-      cursor.classList.remove('hover');
+      // cursor.classList.remove('hover');
     };
     canvas.node.ontouchmove = function (e) {
       if (!canvas.isDrawing) {
@@ -93,13 +93,13 @@
             // console.log('ctx.lineTo(' + touches[i].pageX + ', ' + touches[i].pageY + ');');
             var x = touches[idx].pageX;
             var y = touches[idx].pageY;
-            var radius = 20;
+            var radius = 30;
             var fillColor = '#F87171';
             ctx.globalCompositeOperation = 'destination-out';
             ctx.fillCircle(x, y, radius, fillColor);
             cursor.style.left = x + 'px';
             cursor.style.top = y + 'px';
-            cursor.classList.add('hover');
+            // cursor.classList.add('hover');
           }
         }
       }
@@ -107,5 +107,5 @@
   }
 
   var container = document.getElementById('canvas');
-  init(container, 1531, 1038, '#9CA3AF');
+  init(container, 2531, 1038, 'black');
 })();
