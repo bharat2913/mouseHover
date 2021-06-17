@@ -3,6 +3,8 @@
   // to the parent element, and returns the reference to
   // the newly created canvas element
 
+  var cursor = document.getElementById('cursor');
+
   function createCanvas(parent, width, height) {
     var canvas = {};
     canvas.node = document.createElement('canvas');
@@ -41,6 +43,8 @@
       var fillColor = '#F87171';
       ctx.globalCompositeOperation = 'destination-out';
       ctx.fillCircle(x, y, radius, fillColor);
+      cursor.style.left = x + 'px';
+      cursor.style.top = y + 'px';
     };
     canvas.node.onmouseover = function (e) {
       canvas.isDrawing = true;
@@ -88,6 +92,8 @@
             var fillColor = '#F87171';
             ctx.globalCompositeOperation = 'destination-out';
             ctx.fillCircle(x, y, radius, fillColor);
+            cursor.style.left = x + 'px';
+            cursor.style.top = y + 'px';
           }
         }
       }
