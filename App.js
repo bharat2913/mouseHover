@@ -3,8 +3,10 @@
   // to the parent element, and returns the reference to
   // the newly created canvas element
 
-  var cursor = document.querySelector('.cursor');
+  var cursor = document.getElementById('cursor');
   let isDragging = false;
+  var dragElement = document.getElementById('drag');
+  var mediaQueryList = window.matchMedia('(max-width: 600px)');
 
   function createCanvas(parent, width, height) {
     var canvas = {};
@@ -47,7 +49,9 @@
       ctx.fillCircle(x, y, radius, fillColor);
       cursor.style.left = x + 'px';
       cursor.style.top = y + 'px';
+      cursor.style.display = 'block';
       cursor.classList.add('hover');
+      canvas.node.style.cursor = 'none';
     };
     canvas.node.onmouseover = function (e) {
       canvas.isDrawing = true;
@@ -62,7 +66,6 @@
     };
     canvas.node.ontouchend = function (e) {
       canvas.isDrawing = false;
-      // cursor.classList.remove('hover');
     };
     canvas.node.ontouchmove = function (e) {
       if (!canvas.isDrawing) {
@@ -97,9 +100,13 @@
             var fillColor = '#F87171';
             ctx.globalCompositeOperation = 'destination-out';
             ctx.fillCircle(x, y, radius, fillColor);
-            cursor.style.left = x + 'px';
-            cursor.style.top = y + 'px';
-            // cursor.classList.add('hover');
+            if (!mediaQueryList) {
+              dragElement.style.transform = `translate(${x}px, ${y}px)`;
+            } else if (mediaQueryList) {
+              dragElement.style.transform = `translate(${x}px, ${y}px)`;
+              dragElement.style.display = 'block';
+              dragElement.style.opacity = '1';
+            }
           }
         }
       }
