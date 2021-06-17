@@ -3,7 +3,8 @@
   // to the parent element, and returns the reference to
   // the newly created canvas element
 
-  var cursor = document.getElementById('cursor');
+  var cursor = document.querySelector('.cursor');
+  let isDragging = false;
 
   function createCanvas(parent, width, height) {
     var canvas = {};
@@ -37,6 +38,7 @@
       if (!canvas.isDrawing) {
         return;
       }
+
       var x = e.pageX - this.offsetLeft;
       var y = e.pageY - this.offsetTop;
       var radius = 40; // or whatever
@@ -45,12 +47,14 @@
       ctx.fillCircle(x, y, radius, fillColor);
       cursor.style.left = x + 'px';
       cursor.style.top = y + 'px';
+      // cursor.classList.add('hover');
     };
     canvas.node.onmouseover = function (e) {
       canvas.isDrawing = true;
     };
     canvas.node.onmouseleave = function (e) {
       canvas.isDrawing = false;
+      // cursor.classList.remove('hover');
     };
     // Touch Events
     canvas.node.ontouchstart = function (e) {
@@ -58,6 +62,7 @@
     };
     canvas.node.ontouchend = function (e) {
       canvas.isDrawing = false;
+      cursor.classList.remove('hover');
     };
     canvas.node.ontouchmove = function (e) {
       if (!canvas.isDrawing) {
@@ -94,6 +99,7 @@
             ctx.fillCircle(x, y, radius, fillColor);
             cursor.style.left = x + 'px';
             cursor.style.top = y + 'px';
+            cursor.classList.add('hover');
           }
         }
       }
